@@ -34,7 +34,7 @@ public interface ProcessService {
     String postCase(String body);
 
     @GET
-    @Path("/server/queries/cases/instances/{caseId}/tasks/instances/pot-owners")
+    @Path("/server/queries/cases/instances/{caseId}/tasks/instances/admins")
     @Produces("application/json")
     @ClientHeaderParam(name="Authorization", value="Basic YWRtaW5Vc2VyOlJlZEhhdA==")
     String getCustomerTasks(@PathParam("caseId") String caseId, @QueryParam("user") String user);
