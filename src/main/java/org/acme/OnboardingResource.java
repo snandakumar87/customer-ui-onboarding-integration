@@ -236,8 +236,8 @@ public class OnboardingResource {
 
         try {
             System.out.println(taskId);
-            processService.startTask(taskId, "customer");
-            processService.completeTask(taskId, null, "customer");
+            processService.startTask(taskId);
+            processService.completeTask(taskId, null);
         }catch (Exception e) {
             e.printStackTrace();
         }

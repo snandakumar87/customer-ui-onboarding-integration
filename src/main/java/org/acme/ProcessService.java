@@ -64,13 +64,13 @@ public interface ProcessService {
     @Path("/server/containers/customer-onboarding-case_1.0.0-SNAPSHOT/tasks/{taskId}/states/completed")
     @Consumes("application/json")
     @ClientHeaderParam(name="Authorization", value="Basic Y3VzdG9tZXI6UmVkSGF0")
-    String completeTask(@javax.ws.rs.PathParam("taskId") String taskId, String body, @QueryParam("user") String user);
+    String completeTask(@javax.ws.rs.PathParam("taskId") String taskId, String body);
 
     @PUT
     @Path("/server/containers/customer-onboarding-case_1.0.0-SNAPSHOT/tasks/{taskId}/states/started")
     @Produces("application/json")
     @ClientHeaderParam(name="Authorization", value="Basic Y3VzdG9tZXI6UmVkSGF0")
-    String startTask(@javax.ws.rs.PathParam("taskId") String taskId, @QueryParam("user") String user);
+    String startTask(@javax.ws.rs.PathParam("taskId") String taskId);
 
     @GET
     @Path("/server/containers/customer-onboarding-case_1.0.0-SNAPSHOT/cases/instances")
