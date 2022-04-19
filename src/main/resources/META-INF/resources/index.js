@@ -1,6 +1,6 @@
 if (!!window.EventSource) {
 
-    var eventSource = new EventSource("/transaction/stream");
+    var eventSource = new EventSource("/onboarding/stream");
 
     eventSource.onmessage = function(event) {
 
