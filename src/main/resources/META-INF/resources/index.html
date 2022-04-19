@@ -26,7 +26,7 @@
       $scope.submitForm = function(entity) {
         var rand = Date.now();
           $http({
-              url: baseURL+"/onboarding/"+rand,
+              url: baseURL+"/onboarding/request/"+rand,
               method: "POST",
               headers: new Headers({ 'Content-Type': 'application/json' }),
               data: entity
@@ -1048,28 +1048,7 @@
                                       </select>
                                     </div>
                                   </div>
-                                  <div class="pf-c-form__group" >
-                                    <div class="pf-c-form__group-label">
-                                      <label
-                                        class="pf-c-form__label"
-                                        for="form-horizontal-name"
-                                      >
-                                        <span class="pf-c-form__label-text"
-                                          >Sub Product Type
-                                        </span>
-                                      </label>
-                                    </div>
-                                    <div class="pf-c-form__group-control">
-                                      <select
-                                        class="form-control"
-                                        id="id_companyType"
-                                        ng-model="entity.subProductType"  ng-options="choice for choice in subProducts"
-                                      >
 
-                                        >
-                                      </select>
-                                    </div>
-                                  </div>
 
 
                                   <div class="pf-c-form__group" >

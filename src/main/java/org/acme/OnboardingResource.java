@@ -16,7 +16,7 @@ public class OnboardingResource {
     KafkaController kafkaController;
 
     @POST
-    @Path("/onboarding/{reqId}")
+    @Path("/request/{reqId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void postCase(String json,@javax.ws.rs.PathParam("reqId") String reqId) {
