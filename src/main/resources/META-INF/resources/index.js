@@ -9,7 +9,7 @@ if (!!window.EventSource) {
         var row = '<tr><td>' + data.requestId+ '</td><td>' + data.Documents + '</td><td>' ;
 
 
- row+='<td><button type="button" id="ajaxSubmit" onclick="checkout('+data.requestId+','+data.institutionName+','+data.entityType+','+data.officerName+','+data.size+","+data.stateOfIncorporation+","+data.productType+","+data.creditCheck+","+data.dueDiligence+","+data.documents+"')"><span class="btn-inner--icon">Details</button></td>';
+ row+='<td><button type="button" id="ajaxSubmit" onclick="checkout('+data.requestId+','+data.institutionName+','+data.entityType+','+data.officerName+','+data.size+','+data.stateOfIncorporation+','+data.productType+','+data.creditCheck+','+data.dueDiligence+','+data.documents+')">Details</button></td>';
 
 
 
