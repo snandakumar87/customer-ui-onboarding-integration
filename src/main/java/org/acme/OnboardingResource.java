@@ -90,8 +90,7 @@ public class OnboardingResource {
             byte[] bytes = IOUtils.toByteArray(inputStream);
             String base64 = StringUtils.newStringUtf8(Base64.encodeBase64(bytes, true));
 
-            String responseString = "{\"requestId\":\""+requestId+"\",\"docContent\":\""+
-                    base64+"\"}";
+            String responseString = base64;
             System.out.println(responseString);
             kafkaDocsController.produce(requestId,responseString);
 
