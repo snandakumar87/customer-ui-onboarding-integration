@@ -25,9 +25,6 @@ if (!!window.EventSource) {
 }
 
 function checkout(data) {
-
-window.open("/UploadDocumentation.html?requestId="+data.requestId+"&institutionName="+data.institutionName+"&entityType="+data.entityType+"&officerName="+data.officerName+
-"&size="+data.size+"&stateOfIncorporation="+data.stateOfIncorporation+"&productType="+data.productType+"&creditCheck="+data.creditCheck+"&dueDiligence="+data.dueDiligence+"&documents="+data.Documents, '_blank');
-
+alert('here');
 
 }
