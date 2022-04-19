@@ -9,7 +9,7 @@ if (!!window.EventSource) {
         var row = '<tr><td>' + data.requestId+ '</td><td>' + data.Documents + '</td><td>' ;
 
 
- row+='<td><button type="button" id="ajaxSubmit" onclick="checkout('+data.requestId+')"><span class="btn-inner--icon">Details<i class="ni ni-bold-right"></i></span></button></td>';
+ row+='<td><button type="button" id="ajaxSubmit" onclick="checkout('+data+')"><span class="btn-inner--icon">Details<i class="ni ni-bold-right"></i></span></button></td>';
 
 
 
@@ -24,8 +24,8 @@ if (!!window.EventSource) {
     window.alert("EventSource not available on this browser.")
 }
 
-function checkout(requestId) {
-window.alert(requestId);
+function checkout(data) {
+window.alert(data.requestId);
 //
 //window.open("/UploadDocumentation.html?requestId="+data.requestId+"&institutionName="+data.institutionName+"&entityType="+data.entityType+"&officerName="+data.officerName+
 //"&size="+data.size+"&stateOfIncorporation="+data.stateOfIncorporation+"&productType="+data.productType+"&creditCheck="+data.creditCheck+"&dueDiligence="+data.dueDiligence+"&documents="+data.Documents, '_blank');
