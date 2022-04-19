@@ -30,7 +30,7 @@ public class OnboardingResource {
     KafkaDocsController kafkaDocsController;
 
     @Inject
-    @Channel("txn")
+    @Channel("txn-kafka")
     Publisher<String> transactionPublisher;
 
 
