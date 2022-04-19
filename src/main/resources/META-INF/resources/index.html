@@ -23,96 +23,28 @@
 
       var baseURL = window.location.protocol + '//' + window.location.host;
 
-
-      $scope.questionnaireRules = function() {
-      if($scope.entity.annualSpend == undefined) {
-        $scope.entity.annualSpend = 0;
-      }
-
-$http({
-        url: baseURL+"/onboarding/entity/"+$scope.entity.entityType+"/country/"+$scope.entity.country+"/subProductType/"+$scope.entity.subProductType+"/annualSpend/"+$scope.entity.annualSpend,
-        method: "GET"
-
-    })
-    .then(function(response) {
-
-           $scope.responseMsg =response.data;
-
-
-    });
-
-
-      }
-
-
- $scope.subProductTypes = function() {
-
-$http({
-        url: baseURL+"/onboarding/productType/"+$scope.entity.productType,
-        method: "GET"
-
-    })
-    .then(function(response) {
-
-           $scope.subProducts =response.data;
-
-
-    });
-
-    $http({
-        url: baseURL+"/onboarding/steps/productType/"+$scope.entity.productType,
-        method: "GET"
-
-    })
-    .then(function(response) {
-
-           $scope.entity.steps =response.data;
-
-
-    });
-
-
-      }
-
       $scope.submitForm = function(entity) {
+        var rand = Date.now();
+          $http({
+              url: baseURL+"/onboarding/"+rand,
+              method: "POST",
+              headers: new Headers({ 'Content-Type': 'application/json' }),
+              data: entity
 
+          })
+          .then(function(response) {
 
+                 $scope.message = "Your onboarding request has been submitted";
 
-$http({
-        url: baseURL+"/onboarding",
-        data: entity,
-        method: "POST"
+          },
+          function(response) { // optional
 
-    })
-    .then(function(response) {
+                  // failed
+                  console.log (JSON.stringify (response, null, 2));
 
-           $scope.caseId =response.data;
+          });
 
-
-    });
-
-   }
-
-   $scope.getTasks = function() {
-
-    $http({
-        url: baseURL+"/onboarding/tasks/"+$scope.caseId,
-        method: "GET"
-
-    })
-    .then(function(response) {
-
-           $scope.task =response.data;
-
-
-
-
-    });
-    }
-   $scope.uploadDocumentation = function(taskId,caseId) {
-
-      window.open("/UploadDocumentation.html?taskId="+taskId+"&caseId="+caseId, '_blank');
-    }
+      }
 
          });
 
@@ -363,7 +295,7 @@ $http({
                                       </label>
                                     </div>
                                     <div class="pf-c-select">
-                                      <select id="country" name="country" ng-model="entity.country" ng-change="questionnaireRules()" >
+                                      <select id="country" name="country" ng-model="entity.country"  >
                                         <option value="Afganistan"
                                         >Select</option
                                         >
@@ -883,7 +815,7 @@ $http({
 
                                       <select
                                               class="form-control" name="entityType"
-                                              id="id_companyType" ng-model="entity.entityType" ng-change="questionnaireRules()"
+                                              id="id_companyType" ng-model="entity.entityType"
                                       >
                                         <option value="Select">Select</option>
                                         <option value="Sole Proprietorship"
@@ -951,7 +883,7 @@ $http({
                                       />
                                     </div>
                                   </div>
-                                  <div class="pf-c-form__group" ng-show="responseMsg.stateOfIncorporation == true">
+                                  <div class="pf-c-form__group" >
                                     <div class="pf-c-form__group-label">
                                       <label
                                         class="pf-c-form__label"
@@ -972,7 +904,7 @@ $http({
                                       />
                                     </div>
                                   </div>
-                                  <div class="pf-c-form__group" ng-show="responseMsg.generalPartnerName == true">
+                                  <div class="pf-c-form__group" >
                                     <div class="pf-c-form__group-label">
                                       <label
                                         class="pf-c-form__label"
@@ -993,7 +925,7 @@ $http({
                                       />
                                     </div>
                                   </div>
-                                  <div class="pf-c-form__group" ng-show="responseMsg.generalPartnerTaxId == true">
+                                  <div class="pf-c-form__group" >
                                     <div class="pf-c-form__group-label">
                                       <label
                                         class="pf-c-form__label"
@@ -1096,7 +1028,7 @@ $http({
                                       <select
                                         class="form-control"
                                         id="id_companyType"
-                                        ng-model="entity.productType" ng-change="subProductTypes()">
+                                        ng-model="entity.productType" >
                                       >
                                       <option value="Loan Product"
                                       >Select</option
@@ -1116,7 +1048,7 @@ $http({
                                       </select>
                                     </div>
                                   </div>
-                                  <div class="pf-c-form__group" ng-show="subProducts != null">
+                                  <div class="pf-c-form__group" >
                                     <div class="pf-c-form__group-label">
                                       <label
                                         class="pf-c-form__label"
@@ -1131,7 +1063,7 @@ $http({
                                       <select
                                         class="form-control"
                                         id="id_companyType"
-                                        ng-model="entity.subProductType"  ng-options="choice for choice in subProducts" ng-change="questionnaireRules()"
+                                        ng-model="entity.subProductType"  ng-options="choice for choice in subProducts"
                                       >
 
                                         >
@@ -1140,7 +1072,7 @@ $http({
                                   </div>
 
 
-                                  <div class="pf-c-form__group" ng-show="responseMsg.annualSpend == true">
+                                  <div class="pf-c-form__group" >
                                     <div class="pf-c-form__group-label">
                                       <label
                                         class="pf-c-form__label"
@@ -1157,12 +1089,12 @@ $http({
                                               type="number"
                                               id="form-horizontal-name"
                                               name="form-horizontal-name"
-                                              ng-model="entity.annualSpend" ng-change="questionnaireRules()"
+                                              ng-model="entity.annualSpend"
                                       />
                                     </div>
                                   </div>
 
-                                  <div class="pf-c-form__group" ng-show="responseMsg.cardPurchaseType == true">
+                                  <div class="pf-c-form__group" >
                                     <div class="pf-c-form__group-label">
                                       <label
                                               class="pf-c-form__label"
@@ -1277,61 +1209,20 @@ $http({
                   >
                     <div class="pf-c-tab-content__body">
                       <div class="pf-l-flex pf-m-column pf-m-space-items-lg">
-                        <div class="pf-l-flex__item" ng-show="entity.steps == null">
+                        <div class="pf-l-flex__item" >
                           <p>
                             Start with an onboarding request today!
                           </p>
                         </div>
 
-                        <div  ng-show="entity.steps != undefined">
-                          <div ng-show="caseId!=null">
-                          <p>Your case has been created - {{caseId}}</p>
+                        <div  ng-show="message != null">
+                          <div>
+                          <p>Your case has been created</p>
                             <br/>
-                            Active Tasks &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button ng-click="getTasks()"><i class="fas fa-sync-alt" ></i></button>
-                            <table  class="pf-c-table pf-m-grid-md" id="table1" ng-show="task!=null">
-                              <thead>
-                              <tr role="row">
-                                <th role="columnheader">Task Name</th>
-                                <th role="columnheader">Task Status</th>
-
-
-
-                              </tr>
-                              </thead>
-
-                              <tbody>
-
-                              <tr role="row"><td role="cell"><button ng-click="uploadDocumentation(task.taskId,caseId)">{{task.taskName}}</button></td><td role="cell">{{task.taskStatus}}</td></tr>
-
-                              </tr>
-                              </tbody>
-
-                            </table>
 
                           </div>
                           <br/>
-                          <div ng-show="caseId == null">
-                          <p>Your onboarding request will involve the following steps!</p>
-                          <br/>
-                          <table  class="pf-c-table pf-m-grid-md" id="table1" ng-show="entity.steps != null">
-                            <thead>
-                            <tr role="row">
-                              <th role="columnheader">Steps</th>
 
-
-
-                            </tr>
-                            </thead>
-
-                            <tbody ng-repeat="x in entity.steps" role="rowgroup">
-
-                            <tr role="row"><td role="cell">{{x}}</td></tr>
-
-                            </tr>
-                            </tbody>
-
-                          </table>
-                          </div>
                         </div>
                       </div>
                     </div>
