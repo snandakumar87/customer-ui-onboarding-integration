@@ -9,7 +9,7 @@ if (!!window.EventSource) {
         var row = '<tr><td>' + data.requestId+ '</td><td>' + data.Documents + '</td><td>' ;
 
 
- row+='<td><button type="button" id="ajaxSubmit" onclick="checkout('+data.requestId+','"+data.institutionName+"','"+data.entityType+"','"+data.officerName+"','"+data.size+"','"+data.stateOfIncorporation+"','"+data.productType+"','"+data.creditCheck+"','"+data.dueDiligence+"','"+data.Documents+"')">Details</button></td>';
+ row+='<td><button type="button" id="ajaxSubmit" onclick="checkout('+data.requestId+')">Details</button></td>';
 
 
 
@@ -24,11 +24,10 @@ if (!!window.EventSource) {
     window.alert("EventSource not available on this browser.")
 }
 
-function checkout(requestId, institutionName, entityType, officerName,size,stateOfIncorporation,productType,creditCheck,dueDiligence,documents) {
+function checkout(requestId) {
 
 
-window.open("/UploadDocumentation.html?requestId="+requestId+"&institutionName="+institutionName+"&entityType="+entityType+"&officerName="+officerName+
-"&size="+size+"&stateOfIncorporation="+stateOfIncorporation+"&productType="+productType+"&creditCheck="+creditCheck+"&dueDiligence="+dueDiligence+"&documents="+documents, '_blank');
+window.open("/UploadDocumentation.html?requestId="+requestId, '_blank');
 
 
 }

@@ -67,10 +67,7 @@ public class OnboardingResource {
     @Path("/documents")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public void postCaseDocs(MultipartFormDataInput dataInput, @javax.ws.rs.QueryParam("requestId") String requestId, @QueryParam("institutionName") String institutionName,
-                             @QueryParam("entityType") String entityType, @QueryParam("officerName") String officerName, @QueryParam("size") String size,
-                             @QueryParam("stateOfIncorporation") String stateOfIncorporation, @QueryParam("productType") String productType,
-                             @QueryParam("documents") String creditCheck, @QueryParam("documents")String documents) throws Exception {
+    public void postCaseDocs(MultipartFormDataInput dataInput, @javax.ws.rs.QueryParam("requestId") String requestId) throws Exception {
         Map<String, List<InputPart>> uploadForm = dataInput.getFormDataMap();
 
         List<String> docIds = new ArrayList<>();
@@ -93,8 +90,7 @@ public class OnboardingResource {
             byte[] bytes = IOUtils.toByteArray(inputStream);
             String base64 = StringUtils.newStringUtf8(Base64.encodeBase64(bytes, true));
 
-            String responseString = "{\"requestId\":\""+requestId+"\",institutionName\":\""+institutionName+"\",\"entityType\":\""+entityType+"\",\"officerName\":\""+
-                    officerName+"\",\"size\":"+size+",\"stateOfIncorporation\":\""+stateOfIncorporation+"\",\"productType\":\""+productType+"\",\"documents\":\""+documents+"\"\"docContent\":\""+
+            String responseString = "{\"requestId\":\""+requestId+"\",\"docContent\":\""+
                     base64+"\"}";
             System.out.println(responseString);
             kafkaDocsController.produce(requestId,responseString);

@@ -27,17 +27,6 @@
       var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 var requestId = urlParams.get('requestId');
-var institutionName = urlParams.get('institutionName');
-var entityType = urlParams.get('entityType');
-var officerName = urlParams.get('officerName');
-var size = urlParams.get('size');
-var entityType = urlParams.get('entityType');
-
-var stateOfIncorporation = urlParams.get('stateOfIncorporation');
-var productType = urlParams.get('productType');
-var creditCheck = urlParams.get('creditCheck');
-var dueDiligence = urlParams.get('dueDiligence');
-var documents = urlParams.get('documents');
 
 
 
@@ -72,9 +61,7 @@ $scope.uploadFiles = function () {
 
 
             $http({
-            url: baseURL+'/onboarding/documents?requestId='+requestId+"&institutionName="+institutionName+"&entityType="+entityType+"&officerName="+officerName+"&
-            size="+size+"&entityType="+entityType+"&stateOfIncorporation="+stateOfIncorporation+"&productType="+productType+"&documents="+documents,
-
+            url: baseURL+'/onboarding/documents?requestId='+requestId,
             method: "POST",
             data: data,
              headers: {'Content-Type': undefined},
