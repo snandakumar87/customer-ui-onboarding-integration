@@ -27,6 +27,9 @@ public class OnboardingResource {
     KafkaController kafkaController;
 
     @Inject
+    KafkaDocsController kafkaDocsController;
+
+    @Inject
     @Channel("txn")
     Publisher<String> transactionPublisher;
 
@@ -94,6 +97,7 @@ public class OnboardingResource {
                     officerName+"\",\"size\":"+size+",\"stateOfIncorporation\":\""+stateOfIncorporation+"\",\"productType\":\""+productType+"\",\"documents\":\""+documents+"\"\"docContent\":\""+
                     base64+"\"}";
             System.out.println(responseString);
+            kafkaDocsController.produce(requestId,responseString);
 
         }
 
