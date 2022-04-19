@@ -15,6 +15,8 @@ if (!!window.EventSource) {
 
          row+='</tr><tr width="200px" id="svg" style="width:100%"></tr>';
 
+        alert(data);
+
         $('#tbody').append(row);
     };
 
