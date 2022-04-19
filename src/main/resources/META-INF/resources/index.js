@@ -9,7 +9,7 @@ if (!!window.EventSource) {
         var row = '<tr><td>' + data.requestId+ '</td><td>' + data.Documents + '</td><td>' ;
 
 
- row+='<td><button class="btn btn-icon btn-primary" type="button" id="ajaxSubmit" onclick="checkout('+data+')"><span class="btn-inner--icon">Details<i class="ni ni-bold-right"></i></span></button>';
+ row+='<td><button class="btn btn-icon btn-primary" type="button" id="ajaxSubmit" onclick='checkout(data)'><span class="btn-inner--icon">Details<i class="ni ni-bold-right"></i></span></button>';
 
 
 
