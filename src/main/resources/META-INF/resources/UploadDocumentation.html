@@ -26,23 +26,21 @@
       var baseURL = window.location.protocol + '//' + window.location.host;
       var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
-var taskId = urlParams.get('taskId');
-var caseId = urlParams.get('caseId');
+var requestId = urlParams.get('requestId');
+var institutionName = urlParams.get('institutionName');
+var entityType = urlParams.get('entityType');
+var officerName = urlParams.get('officerName');
+var size = urlParams.get('size');
+var entityType = urlParams.get('entityType');
+
+var stateOfIncorporation = urlParams.get('stateOfIncorporation');
+var productType = urlParams.get('productType');
+var creditCheck = urlParams.get('creditCheck');
+var dueDiligence = urlParams.get('dueDiligence');
+var documents = urlParams.get('documents');
 
 
-        $http({
-        url: baseURL+"/onboarding/docReq/"+caseId,
-        method: "GET"
 
-    })
-    .then(function(response) {
-
-           $scope.docReq =response.data;
-
-
-
-
-    });
        $scope.files = [];
 
      $scope.getFileDetails = function (e) {
@@ -67,13 +65,16 @@ $scope.uploadFiles = function () {
 
             for (var i in $scope.files) {
                 data.append("uploadedFile", $scope.files[i]);
+
             }
 
 
 
 
             $http({
-            url: baseURL+'/onboarding/customer-case/documents/'+caseId+'/task/'+taskId,
+            url: baseURL+'/onboarding/documents?requestId='+requestId+"&institutionName="+institutionName+"&entityType="+entityType+"&officerName="+officerName+"&
+            size="+size+"&entityType="+entityType+"&stateOfIncorporation="+stateOfIncorporation+"&productType="+productType+"&documents="+documents,
+
             method: "POST",
             data: data,
              headers: {'Content-Type': undefined},
@@ -310,9 +311,9 @@ $scope.uploadFiles = function () {
                                   </tr>
                                   </thead>
 
-                                  <tbody ng-repeat="x in docReq" role="rowgroup">
+                                  <tbody role="rowgroup">
 
-                                  <tr role="row"><td role="cell">{{x.docName}}</td><td><div class="file-loading">
+                                  <tr role="row"><td><div class="file-loading">
                                     <input id="file-1" type="file" showClose="false" data-show-upload="false" multiple class="file" data-theme="fas" onchange="angular.element(this).scope().getFileDetails(this)" >
 
                                   </div></td></tr>
